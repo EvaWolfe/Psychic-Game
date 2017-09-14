@@ -33,15 +33,30 @@ document.onkeyup = function(){
 	if (userPick == compPick) {
 		alert("Congratulations! You win!");
 		wins++;
-		// console.log(wins);
 		document.querySelector("#wins").innerText = "Wins: " + wins;
 		compPick = getRndLetter()
 		console.log(compPick);
+		numberOfGuesses = 7;
+		document.querySelector("#guessesLeft").innerText = "Guesses Left: " + numberOfGuesses;
 	}
 
 	else {
-		alert("Wrong Letter! Please try again!");
+		numberOfGuesses--;
+			if (numberOfGuesses == 0) {
+				alert("Womp! Womp! You lose!");
+				compPick = getRndLetter()
+				console.log(compPick);
+				numberOfGuesses = 7;
+				losses++;
+				document.querySelector("#losses").innerText = "Losses: " + losses;
+			}
+			else {
+				alert("Wrong Letter! Please try again!");
+			}		
+			
+
 		document.querySelector("#guesses").innerText = "Your Last Was: " + userPick;
+		document.querySelector("#guessesLeft").innerText = "Guesses Left: " + numberOfGuesses;
 
 	}
 }
